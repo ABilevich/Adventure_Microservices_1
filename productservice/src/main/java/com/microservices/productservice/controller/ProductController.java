@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.microservices.productservice.dto.ProductRequest;
 import com.microservices.productservice.dto.ProductResponse;
+import com.microservices.productservice.model.Product;
 import com.microservices.productservice.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,8 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct(@RequestBody ProductRequest productRequest) {
-        productService.createProduct(productRequest);
+    public ProductResponse createProduct(@RequestBody ProductRequest productRequest) {
+        return productService.createProduct(productRequest);
     }   
 
 

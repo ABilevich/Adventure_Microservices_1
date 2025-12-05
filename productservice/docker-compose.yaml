@@ -1,21 +1,18 @@
-version: "3.8"
+version: "4"
 
 services:
   mongodb:
     image: mongo:latest
-    container_name: mongodb_container
+    container_name: mongodb
     ports:
-      - "27017:27017" # Map the default MongoDB port
+      - "27017:27017"
     environment:
-      # Optional: Set root username and password for initial setup
       # MONGO_INITDB_ROOT_USERNAME: root
       # MONGO_INITDB_ROOT_PASSWORD: password
-      # Optional: Create an initial database
-      MONGO_INITDB_DATABASE: products_db
+      MONGO_INITDB_DATABASE: product-service
     volumes:
-      # Optional: Persist the data outside the container
-      - mongo_data:/data/db
-    restart: unless-stopped
+      - ./data:/data/db
+
   mongo-express:
     image: mongo-express:latest
     container_name: mongo_express_container
@@ -37,7 +34,6 @@ services:
       ME_CONFIG_BASICAUTH_PASSWORD: strong_admin_pass
     depends_on:
       - mongodb # Ensure MongoDB starts before Mongo Express
-    restart: unless-stopped
 
-volumes:
-  mongo_data:
+# volumes:
+#   mongo_data:
