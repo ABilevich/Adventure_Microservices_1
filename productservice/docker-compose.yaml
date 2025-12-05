@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "27017:27017" # Map the default MongoDB port
+    environment:
+      # Optional: Set root username and password for initial setup
+      # MONGO_INITDB_ROOT_USERNAME: root
+      # MONGO_INITDB_ROOT_PASSWORD: password
+      # Optional: Create an initial database
+      MONGO_INITDB_DATABASE: products_db
+    volumes:
+      # Optional: Persist the data outside the container
+      - mongo_data:/data/db
+    restart: unless-stopped
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo_express_container
+    ports:
+      - "8081:8081" # Access the UI at http://localhost:8081
+    environment:
+      # --- Connection Details for Mongo Express to MongoDB ---
+      # This hostname 'mongodb' refers to the service name defined above.
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+
+      # --- Admin Credentials for Mongo Express to log into MongoDB ---
+      # ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      # ME_CONFIG_MONGODB_ADMINPASSWORD: password
+
+      # --- Credentials for the Mongo Express Web Interface (Optional Basic Auth) ---
+      ME_CONFIG_BASICAUTH_USERNAME: admin_user
+      ME_CONFIG_BASICAUTH_PASSWORD: strong_admin_pass
+    depends_on:
+      - mongodb # Ensure MongoDB starts before Mongo Express
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
