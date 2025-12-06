@@ -17,7 +17,7 @@ services:
     image: mongo-express:latest
     container_name: mongo_express_container
     ports:
-      - "8081:8081" # Access the UI at http://localhost:8081
+      - "8000:8081" # Access the UI at http://localhost:8081
     environment:
       # --- Connection Details for Mongo Express to MongoDB ---
       # This hostname 'mongodb' refers to the service name defined above.
