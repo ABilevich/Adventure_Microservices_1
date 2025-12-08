@@ -36,6 +36,7 @@ The simple architecture is as follows
   - New Annotations
     - @Configuration
     - @Bean
+    - @Value & @ConfigurationProperties
   - Api gateways using Spring Boot Cloud
   - Spring security with Keycloak
   - Using MongoDB using MongoRepository
