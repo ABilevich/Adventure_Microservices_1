@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.microservices.inventoryservice.repository.InventoryRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -12,9 +13,8 @@ public class InventoryService {
 
     private final InventoryRepository inventoryRepository;
 
-    public boolean isInStock(String skuCode, Integer quantity){
-        // Find an inventory for a given skuCode where quantity is greater than or equal to 0
+    @Transactional
+    public boolean isInStock(String skuCode, Integer quantity) {
         return inventoryRepository.existsBySkuCodeAndQuantityIsGreaterThanEqual(skuCode, quantity);
     }
-
 }
