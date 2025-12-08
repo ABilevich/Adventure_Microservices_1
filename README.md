@@ -25,6 +25,11 @@ The simple architecture is as follows
 - Allows us to implement OAuth very simply
 - Requires us to generate a barer token using oauth2 before requesting to our api gateway
 
+### SpringDocOpenAPI & Swagger
+
+- Used for documenting our services
+- the documentation is exposed through the API Gateway
+
 ## Things I learned
 
 - Spring boot
