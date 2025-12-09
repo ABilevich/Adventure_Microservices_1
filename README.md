@@ -52,3 +52,8 @@ The simple architecture is as follows
 - Microservices Concepts
   - Sync / Async communication
   - API Gateway
+  - Circuit breaker pattern
+    - to prevent the api gateway from degrading if one of the services crashes/is overwhelmed
+    - when the circuit breaker is triggered, all outgoing requests will be blocked if a service is slow/unreachable
+    - for this we use Spring Cloud Circuit Breaker (Resilience4j implementation)
+    - Resilience4j also provides Rate Limiter and Retry
